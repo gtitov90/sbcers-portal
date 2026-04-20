@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+:root {
+  /* Custom App tokens */
+  --nav-bg: #0C447C;
+  --nav-text: #FFFFFF;
+  --sidebar-bg: #0F172A;
+  --sidebar-text: #94A3B8;
+  --sidebar-active-bg: rgba(255,255,255,0.08);
+  --sidebar-active-border: #378ADD;
+  --content-bg: #F1F5F9;
+  --card-bg: #FFFFFF;
+  --card-border: #E2E8F0;
+  --primary: #185FA5;
+  --radius: 8px;
+}
+
+.mode-powerbi {
+  --nav-bg: #FFFFFF;
+  --nav-text: #252423;
+  --nav-border: #E0DEDD;
+  --sidebar-bg: #FAF9F8;
+  --sidebar-text: #605E5C;
+  --sidebar-active-bg: #EDEBE9;
+  --sidebar-active-border: #0065A3;
+  --sidebar-active-text: #252423;
+  --content-bg: #FFFFFF;
+  --card-bg: #FFFFFF;
+  --primary: #0065A3;
+  --radius: 2px;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Inter', system-ui, sans-serif; background: var(--content-bg); }
+
+.mode-powerbi body,
+.mode-powerbi * { font-family: 'Segoe UI', system-ui, sans-serif; border-radius: 2px !important; }
+
+.app-shell { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+.app-body { display: flex; flex: 1; overflow: hidden; }
+.main-content { flex: 1; overflow-y: auto; padding: 0 24px 24px; background: var(--content-bg); transition: opacity 0.2s ease; }
+.main-content.transitioning { opacity: 0.5; }
+
+/* Sticky page header */
+.page-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--content-bg);
+  padding: 20px 0 14px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #E2E8F0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.mode-powerbi .page-header { border-bottom-color: #E0DEDD; box-shadow: none; }
+
+/* Collapsible sidebar transition */
+.sidebar { transition: width 0.2s ease; overflow: hidden; }
+.sidebar-toggle { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: none; background: transparent; cursor: pointer; border-radius: 6px; flex-shrink: 0; }
+.sidebar-toggle:hover { background: rgba(255,255,255,0.08); }
+.mode-powerbi .sidebar-toggle:hover { background: #EDEBE9; }
+
+/* Status badges */
+.badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 500; }
+.badge-active { background: #EAF3DE; color: #3B6D11; }
+.badge-retired { background: #E6F1FB; color: #0C447C; }
+.badge-deferred { background: #FAEEDA; color: #633806; }
+.badge-survivor { background: #FBEAF0; color: #72243E; }
+.badge-critical { background: #FCEBEB; color: #A32D2D; }
+.badge-warning { background: #FAEEDA; color: #633806; }
+.badge-info { background: #E6F1FB; color: #185FA5; }
+.badge-paid { background: #EAF3DE; color: #3B6D11; }
+.badge-pending { background: #FAEEDA; color: #633806; }
+.badge-on-hold { background: #FCEBEB; color: #A32D2D; }
+.badge-current { background: #EAF3DE; color: #3B6D11; }
+.badge-late { background: #FCEBEB; color: #A32D2D; }
+.badge-open { background: #FCEBEB; color: #A32D2D; }
+.badge-in-review { background: #FAEEDA; color: #633806; }
+.badge-resolved { background: #EAF3DE; color: #3B6D11; }
+
+/* Card */
+.card { background: var(--card-bg); border: 1px solid var(--card-border, #E2E8F0); border-radius: var(--radius); padding: 16px; }
+
+/* Metric card */
+.metric-card { background: var(--card-bg); border: 1px solid var(--card-border, #E2E8F0); border-radius: var(--radius); padding: 20px; }
+.mode-powerbi .metric-card { border-top: 3px solid #0065A3; border-radius: 2px; }
+
+/* Table */
+.data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.data-table th { background: #F8FAFC; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 12px; color: #64748B; border-bottom: 1px solid #E2E8F0; }
+.mode-powerbi .data-table th { background: #F3F2F1; color: #605E5C; }
+.data-table td { padding: 10px 12px; border-bottom: 1px solid #F1F5F9; vertical-align: middle; }
+.data-table tr:hover { background: #F8FAFC; }
+.mode-powerbi .data-table tr:nth-child(even) { background: #FAF9F8; }
+
+/* Amber legacy code cell */
+.legacy-code { background: #FEF3C7; color: #92400E; font-family: monospace; font-size: 12px; padding: 2px 6px; border-radius: 4px; cursor: help; position: relative; }
+
+/* Power BI toolbar */
+.pbi-toolbar { display: flex; align-items: center; gap: 8px; padding: 6px 16px; background: #F3F2F1; border-bottom: 1px solid #E0DEDD; font-size: 13px; color: #605E5C; }
+.pbi-toolbar button { padding: 4px 12px; border: 1px solid #E0DEDD; background: #fff; color: #252423; border-radius: 2px; cursor: pointer; font-size: 12px; }
+.pbi-toolbar button:hover { background: #EDEBE9; }
+
+/* Power BI page tabs */
+.pbi-tabs { display: flex; border-bottom: 1px solid #E0DEDD; background: #fff; padding: 0 16px; }
+.pbi-tab { padding: 8px 16px; font-size: 12px; color: #605E5C; cursor: pointer; border-bottom: 2px solid transparent; }
+.pbi-tab.active { color: #252423; border-bottom: 2px solid #0065A3; }
+
+/* Filter pane */
+.filter-pane { width: 220px; background: #FAF9F8; border-left: 1px solid #E0DEDD; padding: 12px; font-size: 13px; flex-shrink: 0; overflow-y: auto; }
+.filter-pane h4 { font-size: 12px; font-weight: 600; color: #252423; margin: 0 0 8px; }
+.filter-section { margin-bottom: 16px; border-left: 2px solid #0065A3; padding-left: 8px; }
+
+/* Avatar circle */
+.avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #fff; flex-shrink: 0; }
+
+/* Section header */
+.section-title { font-size: 11px; font-weight: 600; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+.mode-powerbi .section-title { color: #605E5C; font-size: 12px; font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+/* Drillthrough breadcrumb */
+.drillthrough-bar { font-size: 12px; color: #605E5C; padding: 6px 0 12px; }
+.drillthrough-bar a { color: #0065A3; text-decoration: none; }
+
+/* KPI card row */
+.kpi-row { display: grid; gap: 12px; margin-bottom: 20px; }
+.kpi-row.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.kpi-row.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.kpi-card { background: #fff; border: 1px solid #E2E8F0; border-radius: var(--radius); padding: 16px; }
+.mode-powerbi .kpi-card { border-top: 3px solid #0065A3; border-radius: 2px; }
+.kpi-label { font-size: 11px; color: #64748B; margin-bottom: 4px; }
+.mode-powerbi .kpi-label { color: #605E5C; font-size: 12px; }
+.kpi-value { font-size: 24px; font-weight: 700; color: #0F172A; }
+.mode-powerbi .kpi-value { color: #252423; font-size: 22px; }
+
+/* PBI visual wrapper */
+.pbi-visual { background: #fff; border: 1px solid #E0DEDD; border-radius: 2px; padding: 12px; margin-bottom: 16px; }
+.pbi-visual-title { font-size: 12px; color: #605E5C; margin-bottom: 8px; }
+
+/* Inline expand panel */
+.expand-panel { background: #F8FAFC; border-left: 3px solid #185FA5; padding: 16px; margin-top: 4px; }
+.mode-powerbi .expand-panel { border-left-color: #0065A3; background: #FAF9F8; }
+
+/* Amber highlight row */
+.amber-row td { background: #FFFBEB !important; }
