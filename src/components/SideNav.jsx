@@ -1,15 +1,11 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Search, DollarSign, TrendingUp, FileText, Shield, AlertTriangle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, Shield, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMode } from '../context/ModeContext';
 
 const navItems = [
-  { to: '/search',        label: 'Member Search',     Icon: Search },
-  { to: '/payroll',       label: 'Benefit Payroll',   Icon: DollarSign },
-  { to: '/contributions', label: 'Contributions',     Icon: TrendingUp },
-  { to: '/reports',       label: 'Reports',           Icon: FileText },
-  { to: '/audit',         label: 'Audit Log',         Icon: Shield, admin: true },
-  { to: '/exceptions',    label: 'Exception Reports', Icon: AlertTriangle },
+  { to: '/search', label: 'Member Search', Icon: Search },
+  { to: '/audit',  label: 'Audit Log',     Icon: Shield },
 ];
 
 export default function SideNav() {
@@ -54,39 +50,33 @@ export default function SideNav() {
 
       {/* Nav items */}
       <nav style={{ padding: collapsed ? '4px 6px' : '4px 8px', flex: 1 }}>
-        {navItems.map(({ to, label, Icon, admin }) => (
-          <div key={to}>
-            <NavLink
-              to={to}
-              title={collapsed ? label : undefined}
-              style={({ isActive }) => ({
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: collapsed ? 'center' : 'flex-start',
-                gap: 10,
-                padding: collapsed ? '10px 0' : '9px 12px',
-                borderRadius: isPBI ? 2 : 6,
-                marginBottom: 2,
-                textDecoration: 'none',
-                fontSize: 13,
-                fontWeight: isActive ? 600 : 400,
-                color: isActive ? (isPBI ? '#252423' : '#FFFFFF') : (isPBI ? '#605E5C' : '#94A3B8'),
-                background: isActive ? (isPBI ? '#EDEBE9' : 'rgba(255,255,255,0.08)') : 'transparent',
-                borderLeft: !collapsed && isActive ? `3px solid ${isPBI ? '#0065A3' : '#378ADD'}` : '3px solid transparent',
-                transition: 'all 0.15s',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-              })}
-            >
-              <Icon size={16} style={{ flexShrink: 0 }} />
-              {!collapsed && label}
-            </NavLink>
-            {!collapsed && admin && (
-              <div style={{ fontSize: 10, color: isPBI ? '#A19F9D' : '#475569', paddingLeft: 39, marginBottom: 4 }}>
-                (Admin only)
-              </div>
-            )}
-          </div>
+        {navItems.map(({ to, label, Icon }) => (
+          <NavLink
+            key={to}
+            to={to}
+            title={collapsed ? label : undefined}
+            style={({ isActive }) => ({
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: collapsed ? 'center' : 'flex-start',
+              gap: 10,
+              padding: collapsed ? '10px 0' : '9px 12px',
+              borderRadius: isPBI ? 2 : 6,
+              marginBottom: 2,
+              textDecoration: 'none',
+              fontSize: 13,
+              fontWeight: isActive ? 600 : 400,
+              color: isActive ? (isPBI ? '#252423' : '#FFFFFF') : (isPBI ? '#605E5C' : '#94A3B8'),
+              background: isActive ? (isPBI ? '#EDEBE9' : 'rgba(255,255,255,0.08)') : 'transparent',
+              borderLeft: !collapsed && isActive ? `3px solid ${isPBI ? '#0065A3' : '#378ADD'}` : '3px solid transparent',
+              transition: 'all 0.15s',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+            })}
+          >
+            <Icon size={16} style={{ flexShrink: 0 }} />
+            {!collapsed && label}
+          </NavLink>
         ))}
       </nav>
 

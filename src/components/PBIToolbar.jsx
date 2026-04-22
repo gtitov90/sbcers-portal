@@ -1,11 +1,9 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const pages = [
-  { label: 'Member Search', path: '/search' },
+  { label: 'Member Search',  path: '/search' },
   { label: 'Member Profile', path: '/member/M-00847' },
-  { label: 'Payroll', path: '/payroll' },
-  { label: 'Contributions', path: '/contributions' },
-  { label: 'Reports', path: '/reports' },
+  { label: 'Audit Log',      path: '/audit' },
 ];
 
 export default function PBIToolbar() {

@@ -25,7 +25,7 @@ export default function TopNav() {
 
       {/* App title */}
       <div style={{ fontSize: 14, opacity: 0.85, flexShrink: 0 }}>
-        {isPBI ? 'SBCERS Member Analytics — Power BI' : 'SBCERS Member Portal'}
+        {isPBI ? 'Member Portal — Power BI' : 'Member Portal'}
       </div>
 
       <div style={{ flex: 1 }} />
